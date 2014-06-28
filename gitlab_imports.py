@@ -11,9 +11,9 @@
 import gitlab
 
 # configuraciones
-GITLAB_HOST="pericles.zaffarano.com.ar"
-GITLAB_PORT=10443
-GITLAB_TOKEN="QzL9abn3pihuVZFnnVNs"
+GITLAB_HOST="http://pericles.zaffarano.com.ar"
+GITLAB_PORT=10080
+GITLAB_TOKEN="nAde7J6zTo1pqJdVWTR5"
 
 #
 # mi clave publica, para probar...
@@ -49,7 +49,7 @@ else:
 	print "El usuario ya existia, no se crea"
 
 user_id = user.get("id")
-print "Usuario creado: %s" % user_id
+print "Usuario: %s" % user_id
 
 print "Agregando clave publica al usuario %s" % user_id
 
