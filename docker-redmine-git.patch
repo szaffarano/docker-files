@@ -1,0 +1,28 @@
+diff --git a/assets/init b/assets/init
+index bd78ba5..d5f7794 100755
+--- a/assets/init
++++ b/assets/init
+@@ -182,6 +182,23 @@ case "${SMTP_AUTHENTICATION}" in
+ 	*) sudo -u www-data -H sed 's/{{SMTP_AUTHENTICATION}}/'"${SMTP_AUTHENTICATION}"'/' -i config/initializers/smtp_settings.rb ;;
+ esac
+ 
++# si se bindeo un volumen con repositorios gitlab
++if [ -d /home/git/data/repositories ]; then
++   DEFAULT_GIT_GROUP=git # parametrizar?
++
++   GIT_GROUP_ID=$(stat -c %g /home/git/data/repositories)
++   GIT_GROUP_NAME=$(stat -c %G /home/git/data/repositories)
++   if [ "$GIT_GROUP_NAME" = "UNKNOWN" ]; then
++      echo "Creando grupo con id $GIT_GROUP_ID para asignar permisos a repositorios git"
++      groupadd -g $GIT_GROUP_ID $DEFAULT_GIT_GROUP
++      GIT_GROUP_NAME=$DEFAULT_GIT_GROUP
++   fi
++   echo "Dandole permisos a www-data para acceder a repositorios git con grupo $GIT_GROUP_NAME"
++   usermod -G $GIT_GROUP_NAME -a www-data
++else
++   echo "No se encontro directorio con repositorios gitlab."
++fi
++
+ appDbMigrate () {
+ 	# isolate the plugins
+ 	echo "Migrating database..."
