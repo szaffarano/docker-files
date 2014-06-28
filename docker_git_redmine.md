@@ -18,11 +18,19 @@ $ alias docker=docker.io
 - /redmine/files
 
 ### Containers que se van a usar
+
+- https://github.com/sameersbn/docker-gitlab
+- https://github.com/sameersbn/docker-postgresql
+- https://github.com/sameersbn/docker-redis
+- https://github.com/sameersbn/docker-redmine
+
 ```sh
 $ docker pull sameersbn/gitlab:latest
 $ docker pull sameersbn/postgresql:latest
 $ docker pull sameersbn/redis:latest
+$ docker pull sameersbn/redmine:latest
 ```
+
 ### Iniciar data-only container
 ```sh
 $ docker run -d --name gitlab-redmine-data \
