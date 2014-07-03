@@ -36,8 +36,8 @@ $ docker pull sameersbn/redmine:latest
 $ docker run -d --name gitlab-redmine-data \
    -v /home/git/data \
    -v /var/lib/postgresql \
-   -v /var/lib/redis busybox \
    -v /redmine/files \
+   -v /var/lib/redis busybox \
    true
 ```
 
